@@ -12,21 +12,25 @@
 	{
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
 		LOD 200
+		Lighting On
+		ZWrite Off
+		Blend SrcAlpha OneMinusSrcAlpha
 
-		Pass
-		{
+		//	Allow material to display as semitransparent
+		Pass {
 			ZWrite On
 			ColorMask 0
 		}
 
 		Pass
 		{
-			Lighting On
-
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
 			#include "UnityCG.cginc"
+
+			fixed4 _MainColor;
+			fixed4 _OutlineColor;
 
 			struct v2f {
 				float4 pos : SV_POSITION;
@@ -41,9 +45,11 @@
 				return o;
 			}
 
+			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				return fixed4 (i.color,1);
+				fixed4 texcol = fixed4(i.color,1) * _MainColor;
+				return texcol;
 			}
 
 			ENDCG
