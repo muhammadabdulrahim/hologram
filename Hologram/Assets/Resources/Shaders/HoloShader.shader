@@ -37,7 +37,6 @@
 				fixed4 color : COLOR;
 			};
 
-
 			v2f vert (appdata_full v)
 			{
 				half3 lightColor = ShadeVertexLights(v.vertex,v.normal);
@@ -49,9 +48,10 @@
 				return o;
 			}
 
-			half4 frag (v2f i) : COLOR
+			fixed4 frag(v2f i) : SV_Target
 			{
-				return i.color * _MainColor;
+				fixed4 color = i.color * _MainColor;
+				return color;
 			}
 
 			ENDCG
