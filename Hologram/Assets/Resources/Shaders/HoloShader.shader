@@ -10,16 +10,10 @@
 
 	SubShader
 	{
-		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
-		LOD 200
-		Lighting On
-		ZWrite Off
-		Blend SrcAlpha OneMinusSrcAlpha
-
-		//	Allow material to display as semitransparent
-		Pass {
-			ZWrite On
-			ColorMask 0
+		Tags
+		{
+			"Queue" = "Transparent"
+			"RenderType" = "Opaque"
 		}
 
 		Pass
@@ -27,31 +21,27 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			#include "UnityCG.cginc"
 
-			fixed4 _MainColor;
-			fixed4 _OutlineColor;
+			half4 _MainColor;
 
-			struct v2f {
-				float4 pos : SV_POSITION;
-				fixed4 color : COLOR;
+			struct vertInput {
+				float4 pos : POSITION;
 			};
 
-			v2f vert (appdata_full v)
-			{
-				half3 lightColor = ShadeVertexLights(v.vertex,v.normal);
-				v.color.rgb = lightColor.rgb;
+			struct vertOutput {
+				float4 pos : SV_POSITION;
+			};
 
-				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.color = v.color;
+			vertOutput vert (vertInput input)
+			{
+				vertOutput o;
+				o.pos = UnityObjectToClipPos(input.pos);
 				return o;
 			}
 
-			fixed4 frag(v2f i) : SV_Target
+			half4 frag (vertOutput output) : COLOR
 			{
-				fixed4 color = i.color * _MainColor;
-				return color;
+				return _MainColor;
 			}
 
 			ENDCG
