@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraHandler : MonoBehaviour
 {
 	public GameObject objectToFollow;
+	public float speed;
 
 	// Use this for initialization
 	void Start () {

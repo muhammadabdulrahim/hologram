@@ -5,6 +5,7 @@ using UnityEngine;
 public class BB8Handler : MonoBehaviour
 {
 	public GameObject objectToFollow;
+	public float speed;
 
 
 	// Use this for initialization
