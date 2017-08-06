@@ -6,14 +6,14 @@ public class CameraHandler : MonoBehaviour
 {
 	public GameObject objectToFollow;
 	public float speed;
-
-	// Use this for initialization
-	void Start () {
+	
+	void Awake ()
+	{
 		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		
 	}
 }
