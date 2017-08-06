@@ -6,10 +6,15 @@ public class CameraHandler : MonoBehaviour
 {
 	public GameObject objectToFollow;
 	public float speed;
+	public List<Waypoint> waypointList;
+	private int currentWaypointIndex;
+
+	private Waypoint CurrentWaypoint { get { return waypointList[currentWaypointIndex]; } }
 	
 	void Awake ()
 	{
-		
+		transform.localPosition = CurrentWaypoint.position;
+		transform.localRotation = Quaternion.Euler(CurrentWaypoint.rotation);
 	}
 	
 	void Update ()

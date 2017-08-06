@@ -25,6 +25,5 @@ public class BB8Handler : MonoBehaviour
 		float nextZ = Mathf.Sin(timeStamp) * magnitude;
 		Vector3 nextPosition = new Vector3(nextX, initialY, nextZ);
 		rb.AddForce(nextPosition - transform.position);
-
 	}
 }
