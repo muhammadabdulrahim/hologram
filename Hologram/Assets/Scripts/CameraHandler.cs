@@ -10,7 +10,13 @@ public class CameraHandler : MonoBehaviour
 
 	private float lerpTime;
 	private int currentWaypointIndex;
-	private int NextWaypointIndex { get { return currentWaypointIndex < waypointList.Count-1 ? currentWaypointIndex + 1 : waypointList.Count - 1; } }
+	private int NextWaypointIndex
+	{
+		get
+		{
+			return currentWaypointIndex < waypointList.Count-1 ? currentWaypointIndex + 1 : waypointList.Count - 1;
+		}
+	}
 	private Waypoint CurrentWaypoint { get { return waypointList[currentWaypointIndex]; } }
 	private Waypoint NextWaypoint { get { return waypointList[NextWaypointIndex]; } }
 	
